@@ -6,30 +6,40 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(ResonitePath)'==''">
+    <!-- If you don't want to provide a ResonitePath in dotnet build, you can specify one here -->
+    <ResonitePath>$(MSBuildThisFileDirectory)Resonite/</ResonitePath>
+    <ResonitePath Condition="Exists('C:\Program Files (x86)\Steam\steamapps\common\Resonite\')">C:\Program Files (x86)\Steam\steamapps\common\Resonite\</ResonitePath>
+    <ResonitePath Condition="Exists('$(HOME)/.steam/steam/steamapps/common/Resonite/')">$(HOME)/.steam/steam/steamapps/common/Resonite/</ResonitePath>
+    <ResonitePath Condition="Exists('E:\SteamLibrary\steamapps\common\Resonite\')">E:\SteamLibrary\steamapps\common\Resonite\</ResonitePath>
+    <ResonitePath Condition="Exists('F:\SteamLibrary\steamapps\common\Resonite\')">F:\SteamLibrary\steamapps\common\Resonite\</ResonitePath>
+    <ResonitePath Condition="Exists('D:\SteamLibrary\steamapps\common\Resonite\')">D:\SteamLibrary\steamapps\common\Resonite\</ResonitePath>
+  </PropertyGroup>
+
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Resonite\rml_libs\0Harmony.dll</HintPath>
+      <HintPath>$(ResonitePath)rml_libs\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="Elements.Core">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Resonite\Elements.Core.dll</HintPath>
+      <HintPath>$(ResonitePath)Elements.Core.dll</HintPath>
     </Reference>
     <Reference Include="FrooxEngine">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Resonite\FrooxEngine.dll</HintPath>
+      <HintPath>$(ResonitePath)FrooxEngine.dll</HintPath>
     </Reference>
     <Reference Include="ProtoFlux.Core">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Resonite\ProtoFlux.Core.dll</HintPath>
+      <HintPath>$(ResonitePath)ProtoFlux.Core.dll</HintPath>
     </Reference>
     <Reference Include="Renderite.Shared">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Resonite\Renderite.Shared.dll</HintPath>
+      <HintPath>$(ResonitePath)Renderite.Shared.dll</HintPath>
     </Reference>
     <Reference Include="ResoniteModLoader">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Resonite\Libraries\ResoniteModLoader.dll</HintPath>
+      <HintPath>$(ResonitePath)Libraries\ResoniteModLoader.dll</HintPath>
     </Reference>
     <Reference Include="SkyFrost.Base">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Resonite\SkyFrost.Base.dll</HintPath>
+      <HintPath>$(ResonitePath)SkyFrost.Base.dll</HintPath>
     </Reference>
     <Reference Include="SkyFrost.Base.Models">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Resonite\SkyFrost.Base.Models.dll</HintPath>
+      <HintPath>$(ResonitePath)SkyFrost.Base.Models.dll</HintPath>
     </Reference>
   </ItemGroup>
 
