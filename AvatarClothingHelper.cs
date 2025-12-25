@@ -21,10 +21,10 @@ namespace AvatarClothingHelper
         [AutoRegisterConfigKey]
         private static ModConfigurationKey<bool> GenerateSlotPerBlendshape = new ModConfigurationKey<bool>("GenerateSlotPerBlendshape", "Generate each Blendshape ValueCopy and MultiDriver on a nested slot.", () => true);
 
-        public override string Author => "Banane9 - hazre - zahndy";
-        public override string Link => "https://github.com/zahndy/ResoAvatarClothingHelper";
+        public override string Author => "Banane9 - hazre - zahndy - TaylorRobinson";
+        public override string Link => "https://github.com/TayIorRobinson/ResoAvatarClothingHelper";
         public override string Name => "AvatarClothingHelper";
-        public override string Version => "2.0.0";
+        public override string Version => "3.0.0";
 
         public override void OnEngineInit()
         {
@@ -84,20 +84,20 @@ namespace AvatarClothingHelper
 
             return objectRoot;
         }
-
-        [HarmonyPatch(typeof(ModelImporter))]
-        private static class ModelImporterPatch
-        {
-            [HarmonyPostfix]
-            [HarmonyPatch(nameof(ModelImporter.ImportModel))]
-            private static void ImportModelPostfix(Slot targetSlot, ref IEnumerator<Context> __result)
-            {
-                __result = new EnumerableInjector<Context>(__result)
-                {
-                    Postfix = () => driveSecondaryBlendshapes(targetSlot)
-                }.GetEnumerator();
-            }
-        }
+        //
+        // [HarmonyPatch(typeof(ModelImporter))]
+        // private static class ModelImporterPatch
+        // {
+        //     [HarmonyPostfix]
+        //     [HarmonyPatch(nameof(ModelImporter.ImportModel))]
+        //     private static void ImportModelPostfix(Slot targetSlot, ref IEnumerator<Context> __result)
+        //     {
+        //         __result = new EnumerableInjector<Context>(__result)
+        //         {
+        //             Postfix = () => driveSecondaryBlendshapes(targetSlot)
+        //         }.GetEnumerator();
+        //     }
+        // }
 
         [HarmonyPatch(typeof(SkinnedMeshRenderer))]
         private static class SkinnedMeshRendererPatch
