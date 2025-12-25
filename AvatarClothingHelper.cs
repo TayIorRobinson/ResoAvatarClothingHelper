@@ -50,7 +50,7 @@ namespace AvatarClothingHelper
                 .SelectMany(renderer =>
                     Enumerable.Range(0, renderer.MeshBlendshapeCount)
                     .Select(i => new Blendshape(renderer.BlendShapeName(i), renderer.BlendShapeWeights.GetElement(i), renderer == primaryRenderer)))
-                .GroupBy(blendshape => blendshape.Name)
+                .GroupBy(blendshape => blendshape.NormalisedName)
                 .Where(group => group.Count() > 1 && group.Any(blendshape => blendshape.Primary));
 
             if (!blendshapeGroups.Any())
